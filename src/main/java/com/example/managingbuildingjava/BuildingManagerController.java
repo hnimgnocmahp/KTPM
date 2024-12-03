@@ -1167,9 +1167,12 @@ public class BuildingManagerController implements Initializable {
 
             // Kiểm tra họ
             if (!TxtField__P2_1__3.getText().isEmpty()) {
-                String input = TxtField__P2_1__3.getText();
+                String input = TxtField__P2_1__3.getText().trim();
                 if (!input.matches("[a-zA-ZÀ-ỹ\\s]+")) {
                     Regex__P2__2__2.setText("Họ không được chứa số hoặc ký tự đặc biệt");
+                    isValid = false;
+                }else if (input.length() > 256) {
+                    Regex__P2__2__2.setText("Họ không được quá 256 ký tự");
                     isValid = false;
                 } else {
                     Regex__P2__2__2.setText("");
@@ -1179,9 +1182,12 @@ public class BuildingManagerController implements Initializable {
 
             // Kiểm tra tên
             if (!TxtField__P2_1__4.getText().isEmpty()) {
-                String input = TxtField__P2_1__4.getText();
+                String input = TxtField__P2_1__4.getText().trim();
                 if (!input.matches("[a-zA-ZÀ-ỹ\\s]+")) {
                     Regex__P2__2__3.setText("Tên không được chứa số hoặc ký tự đặc biệt");
+                    isValid = false;
+                }else if (input.length() > 256) {
+                    Regex__P2__2__3.setText("Họ không được quá 256 ký tự");
                     isValid = false;
                 } else {
                     Regex__P2__2__3.setText("");
@@ -1191,7 +1197,7 @@ public class BuildingManagerController implements Initializable {
 
             // Kiểm tra số điện thoại
             if (!TxtField__P2_1__5.getText().isEmpty()) {
-                String input = TxtField__P2_1__5.getText();
+                String input = TxtField__P2_1__5.getText().trim();
                 if (!input.matches("\\d{10}")) {
                     Regex__P2__2__4.setText("10 số");
                     isValid = false;
@@ -1201,9 +1207,13 @@ public class BuildingManagerController implements Initializable {
                 }
             }
 
-            // Kiểm tra ngày sinh
-            if (TxtField__P2_1__41.getValue() != null&&TxtField__P2_1__41.getValue().isBefore(LocalDate.now())) {
-                selectedCohabitant.setDateOfBirthDay(TxtField__P2_1__41.getValue());
+            if (TxtField__P2_1__41.getValue()==null) {
+                Regex__P2__2__6.setText("Không được để trống");
+                isValid = false;
+            } else if(TxtField__P2_1__41.getValue().isAfter(LocalDate.now())){
+                Regex__P2__2__6.setText("Chọn ngày sinh hợp lệ");
+            } else {
+                Regex__P2__2__6.setText("");
             }
 
             // Kiểm tra giới tính (ComboBox)
@@ -1213,7 +1223,7 @@ public class BuildingManagerController implements Initializable {
 
             // Kiểm tra căn cước công dân
             if (!TxtField__P2_1__51.getText().isEmpty()) {
-                String input = TxtField__P2_1__51.getText();
+                String input = TxtField__P2_1__51.getText().trim();
                 if (!input.matches("\\d{12}")) {
                     Regex__P2__2__7.setText("Chứa đúng 12 số");
                     isValid = false;
@@ -1253,9 +1263,12 @@ public class BuildingManagerController implements Initializable {
                 Regex__P2__1.setText("Không được để trống");
                 isValid = false;
             } else {
-                String input = TxtField__P2__2.getText();
+                String input = TxtField__P2__2.getText().trim();
                 if (!input.matches("[a-zA-ZÀ-ỹ\\s]+")) {
                     Regex__P2__1.setText("Họ không được chứa số hoặc ký tự đặc biệt");
+                    isValid = false;
+                }else if (input.length() > 256) {
+                    Regex__P2__1.setText("Họ không được quá 256 ký tự");
                     isValid = false;
                 } else {
                     Regex__P2__1.setText("");
@@ -1267,9 +1280,12 @@ public class BuildingManagerController implements Initializable {
                 Regex__P2__2.setText("Không được để trống");
                 isValid = false;
             } else {
-                String input = TxtField__P2__3.getText();
+                String input = TxtField__P2__3.getText().trim();
                 if (!input.matches("[a-zA-ZÀ-ỹ\\s]+")) {
                     Regex__P2__2.setText("Tên không được chứa số hoặc ký tự đặc biệt");
+                    isValid = false;
+                }else if (input.length() > 256) {
+                    Regex__P2__2.setText("Họ không được quá 256 ký tự");
                     isValid = false;
                 } else {
                     Regex__P2__2.setText("");
@@ -1278,7 +1294,7 @@ public class BuildingManagerController implements Initializable {
             }
 
             if (!TxtField__P2__4.getText().isEmpty()) {
-                String input = TxtField__P2__4.getText();
+                String input = TxtField__P2__4.getText().trim();
                 if (!input.matches("\\d{10}")) {
                     Regex__P2__3.setText("Phải là 10 số");
                     isValid = false;
@@ -1304,7 +1320,7 @@ public class BuildingManagerController implements Initializable {
             }
 
             if (!TxtField__P2__51.getText().isEmpty()) {
-                String input = TxtField__P2__51.getText();
+                String input = TxtField__P2__51.getText().trim();
                 if (!input.matches("\\d{12}")) {
                     Regex__P2__6.setText("Căn cước phải chứa đúng 12 số");
                     isValid = false;
@@ -1357,6 +1373,9 @@ public class BuildingManagerController implements Initializable {
                 if (!input.matches("[a-zA-ZÀ-ỹ\\s]+")) {
                     Regex__P2__2__2.setText("Họ không được chứa số hoặc ký tự đặc biệt");
                     isValid = false;
+                }else if (input.length() > 256) {
+                    Regex__P2__2__2.setText("Họ không được quá 256 ký tự");
+                    isValid = false;
                 } else {
                     Regex__P2__2__2.setText("");
                 }
@@ -1370,6 +1389,9 @@ public class BuildingManagerController implements Initializable {
                 // Kiểm tra xem chuỗi có chứa số hoặc ký tự đặc biệt hay không
                 if (!input.matches("[a-zA-ZÀ-ỹ\\s]+")) {
                     Regex__P2__2__3.setText("Tên không được chứa số hoặc ký tự đặc biệt");
+                    isValid = false;
+                }else if (input.length() > 256) {
+                    Regex__P2__2__3.setText("Họ không được quá 256 ký tự");
                     isValid = false;
                 } else {
                     Regex__P2__2__3.setText("");
@@ -1430,12 +1452,12 @@ public class BuildingManagerController implements Initializable {
 
             Cohabitant cohabitant = new Cohabitant();
             cohabitant.setTenantID(Combobox__P2_1__2.getSelectionModel().getSelectedItem());
-            cohabitant.setFirstName(TxtField__P2_1__3.getText());
-            cohabitant.setLastName(TxtField__P2_1__4.getText());
-            cohabitant.setPhoneNumber(TxtField__P2_1__5.getText());
+            cohabitant.setFirstName(TxtField__P2_1__3.getText().trim());
+            cohabitant.setLastName(TxtField__P2_1__4.getText().trim());
+            cohabitant.setPhoneNumber(TxtField__P2_1__5.getText().trim());
             cohabitant.setDateOfBirthDay(TxtField__P2_1__41.getValue());
             cohabitant.setGender(comboBox__P2_1__3.getSelectionModel().getSelectedItem());
-            cohabitant.setCitizenIdentityCard(TxtField__P2_1__51.getText());
+            cohabitant.setCitizenIdentityCard(TxtField__P2_1__51.getText().trim());
 
             CohabitantBUS cohabitantBUS = new CohabitantBUS();
             cohabitantBUS.add(cohabitant);
@@ -1457,8 +1479,6 @@ public class BuildingManagerController implements Initializable {
     @FXML
     void themKhachHang(ActionEvent event) {
         try {
-
-
             boolean isValid = true;
 
             if (TxtField__P2__2.getText().isEmpty()) {
@@ -1469,6 +1489,9 @@ public class BuildingManagerController implements Initializable {
                 // Kiểm tra xem chuỗi có chứa số hoặc ký tự đặc biệt hay không
                 if (!input.matches("[a-zA-ZÀ-ỹ\\s]+")) {
                     Regex__P2__1.setText("Họ không được chứa số hoặc ký tự đặc biệt");
+                    isValid = false;
+                }else if (input.length() > 256) {
+                    Regex__P2__1.setText("Họ không được quá 256 ký tự");
                     isValid = false;
                 } else {
                     Regex__P2__1.setText("");
@@ -1483,6 +1506,9 @@ public class BuildingManagerController implements Initializable {
                 // Kiểm tra xem chuỗi có chứa số hoặc ký tự đặc biệt hay không
                 if (!input.matches("[a-zA-ZÀ-ỹ\\s]+")) {
                     Regex__P2__2.setText("Tên không được chứa số hoặc ký tự đặc biệt");
+                    isValid = false;
+                }else if (input.length() > 256) {
+                    Regex__P2__2.setText("Họ không được quá 256 ký tự");
                     isValid = false;
                 } else {
                     Regex__P2__2.setText("");
@@ -1508,6 +1534,7 @@ public class BuildingManagerController implements Initializable {
                 isValid = false;
             } else  if (TxtField__P2__5.getValue().isAfter(LocalDate.now())){
                 Regex__P2__4.setText("Chọn ngày sinh hợp lệ");
+                isValid = false;
 
             }else {
                 Regex__P2__4.setText("");
@@ -1533,22 +1560,18 @@ public class BuildingManagerController implements Initializable {
                     Regex__P2__6.setText("");
                 }
             }
-
-
-
-
             // If validation failed, return early
             if (!isValid) {
                 return;
             }
 
             Tenant tenant = new Tenant();
-            tenant.setFirstName(TxtField__P2__2.getText());
-            tenant.setLastName(TxtField__P2__3.getText());
-            tenant.setPhoneNumber(TxtField__P2__4.getText());
+            tenant.setFirstName(TxtField__P2__2.getText().trim());
+            tenant.setLastName(TxtField__P2__3.getText().trim());
+            tenant.setPhoneNumber(TxtField__P2__4.getText().trim());
             tenant.setDateOfBirthDay(TxtField__P2__5.getValue());
             tenant.setGender(comboBox__P2__3.getSelectionModel().getSelectedItem());
-            tenant.setCitizenIdentityCard(TxtField__P2__51.getText());
+            tenant.setCitizenIdentityCard(TxtField__P2__51.getText().trim());
 
             TenantBUS tenantBUS = new TenantBUS();
             tenantBUS.add(tenant);
@@ -1923,18 +1946,40 @@ public class BuildingManagerController implements Initializable {
 
     @FXML
     void huyLocPhieuThu(MouseEvent event) {
-            monthlyRentBillObservableList = getMonthlyRentBillObservableList();
-            table__P3__1.setItems(monthlyRentBillObservableList);
+        monthlyRentBillObservableList = getMonthlyRentBillObservableList();
+        table__P3__1.setItems(monthlyRentBillObservableList);
+        Date__P3__1.setValue(null);
+        Date__P3__2.setValue(null);
+
     }
 
     @FXML
     void locPhieuThu(MouseEvent event) {
-        if (Date__P3__1!=null&&Date__P3__2!=null) {
-            MonthlyRentBillBUS monthlyRentBillBUS = new MonthlyRentBillBUS();
-            ArrayList<MonthlyRentBill> monthlyRentBills = monthlyRentBillBUS.fill(this.ID, Date__P3__1.getValue(), Date__P3__2.getValue());
-            ObservableList<MonthlyRentBill> fill = FXCollections.observableArrayList(monthlyRentBills);
-            monthlyRentBillObservableList.setAll(fill);
+        if (Date__P3__1.getValue() == null || Date__P3__2.getValue() == null) {
+            // Hiển thị thông báo nếu ngày bắt đầu hoặc ngày kết thúc bị bỏ trống
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cảnh báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Ngày bắt đầu và ngày kết thúc không được bỏ trống!");
+            alert.showAndWait();
+            return;
         }
+
+        if (Date__P3__1.getValue().isAfter(Date__P3__2.getValue())) {
+            // Hiển thị thông báo nếu ngày bắt đầu lớn hơn ngày kết thúc
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cảnh báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc!");
+            alert.showAndWait();
+            return;
+        }
+
+        // Nếu tất cả điều kiện được thỏa mãn, thực hiện lọc
+        MonthlyRentBillBUS monthlyRentBillBUS = new MonthlyRentBillBUS();
+        ArrayList<MonthlyRentBill> monthlyRentBills = monthlyRentBillBUS.fill(this.ID, Date__P3__1.getValue(), Date__P3__2.getValue());
+        ObservableList<MonthlyRentBill> fill = FXCollections.observableArrayList(monthlyRentBills);
+        monthlyRentBillObservableList.setAll(fill);
     }
 
 
@@ -2117,10 +2162,10 @@ public class BuildingManagerController implements Initializable {
         boolean isValid = true;
 
         // Lấy giá trị từ các trường
-        String name = TxtField__P4__31.getText();
+        String name = TxtField__P4__31.getText().trim();
         String pricePerUnitText = TxtField__P4__51.getText().replaceAll(",", ""); // Xóa dấu phẩy nếu có
-        String unit = TxtField__P4__61.getText();
-        String type = fill_type.getValue();
+        String unit = TxtField__P4__61.getText().trim();
+        String type = fill_type.getValue().trim();
 
         // Validate tên không được để trống
         if (name == null || name.trim().isEmpty()) {
@@ -2599,7 +2644,7 @@ public class BuildingManagerController implements Initializable {
             boolean exist = ServiceTicketBUS.getInstance().checkServiceTicketInList(maDichVu, maPhieuThu);
             if (!exist) {
                 Double thanhTien = serviceFixed.getPricePerUnit() * soLuong;
-                String ghiChu = ghiChuArea.getText();
+                String ghiChu = ghiChuArea.getText().trim();
 
                 // Tạo phiếu dịch vụ mới
                 ServiceTicket service = new ServiceTicket();
@@ -2654,7 +2699,7 @@ public class BuildingManagerController implements Initializable {
             }
         } else {
             Double thanhTien = serviceFixed.getPricePerUnit() * soLuong;
-            String ghiChu = ghiChuArea.getText();
+            String ghiChu = ghiChuArea.getText().trim();
 
             // Tạo phiếu dịch vụ mới
             ServiceTicket service = new ServiceTicket();
@@ -2734,7 +2779,7 @@ public class BuildingManagerController implements Initializable {
             return;
         }
 
-        String ghiChu = ghiChuArea.getText();
+        String ghiChu = ghiChuArea.getText().trim();
 
 
 
@@ -2759,14 +2804,37 @@ public class BuildingManagerController implements Initializable {
     public void searchDayPPDV() {
         LocalDate day1 = dateStart.getValue();
         LocalDate day2 = dateEnd.getValue();
+
+        // Kiểm tra nếu ngày bắt đầu hoặc ngày kết thúc bị bỏ trống
+        if (day1 == null || day2 == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cảnh báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Ngày bắt đầu và ngày kết thúc không được để trống!");
+            alert.showAndWait();
+            return;
+        }
+
+        // Kiểm tra nếu ngày bắt đầu lớn hơn ngày kết thúc
+        if (day1.isAfter(day2)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cảnh báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc!");
+            alert.showAndWait();
+            return;
+        }
+
+        // Thực hiện tìm kiếm nếu các điều kiện hợp lệ
         ServiceTicketBUS serviceTicketBUS = new ServiceTicketBUS();
         ArrayList<ServiceTicket> serviceTickets = serviceTicketBUS.search(day1, day2, "Tìm Theo Ngày");
-        ObservableList<ServiceTicket> observableBuildingList = FXCollections
-                .observableArrayList(serviceTickets);
+        ObservableList<ServiceTicket> observableBuildingList = FXCollections.observableArrayList(serviceTickets);
         table__sericetiket.setItems(observableBuildingList);
     }
 
     public void resetDay() {
+        dateStart.setValue(null);
+        dateEnd.setValue(null);
         ServiceTicketBUS serviceTicketBUS = new ServiceTicketBUS();
         ArrayList<ServiceTicket> serviceTickets = serviceTicketBUS.getAll();
         serviceTicketslist.addAll(serviceTickets);
@@ -2780,7 +2848,6 @@ public class BuildingManagerController implements Initializable {
             search_phieudv.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {
                     handlesearchId();
-
                 }
             });
         });
@@ -3224,7 +3291,7 @@ public class BuildingManagerController implements Initializable {
         }
 
         LocalDate ngayGhi = ngayGhiPPField.getValue();
-        String ghiChu = ghiChuPPField.getText();
+        String ghiChu = ghiChuPPField.getText().trim();
         Double thanhTien = 0.0;
 
         // Validation for maPhieuThu
@@ -3344,7 +3411,7 @@ public class BuildingManagerController implements Initializable {
 
         ViolationTicket violationTicket = tableviolationticket.getSelectionModel().getSelectedItem();
 
-        String ghiChu = ghiChuPPField.getText();
+        String ghiChu = ghiChuPPField.getText().trim();
 
 
 
@@ -3366,12 +3433,55 @@ public class BuildingManagerController implements Initializable {
     }
 
     public void search_price() {
-        Double text1=Double.parseDouble(price_start.getText());
-        Double text2 = Double.parseDouble(price_end.getText());
-        ViolationTicketBUS violationTicketBUS = new ViolationTicketBUS();
-        ArrayList<ViolationTicket> violationTickets = violationTicketBUS.search(text1, text2,"Lọc Theo Giá");
-        ObservableList<ViolationTicket> observableList = FXCollections.observableArrayList(violationTickets);
-        tableviolationticket.setItems(observableList);
+        try {
+            // Kiểm tra nếu giá bắt đầu hoặc giá kết thúc bị bỏ trống
+            if (price_start.getText().isEmpty() || price_end.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Cảnh báo");
+                alert.setHeaderText(null);
+                alert.setContentText("Giá bắt đầu và giá kết thúc không được để trống!");
+                alert.showAndWait();
+                return;
+            }
+
+            // Parse giá trị từ các ô nhập
+            Double text1 = Double.parseDouble(price_start.getText());
+            Double text2 = Double.parseDouble(price_end.getText());
+
+            // Kiểm tra nếu giá trị âm
+            if (text1 < 0 || text2 < 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Cảnh báo");
+                alert.setHeaderText(null);
+                alert.setContentText("Giá bắt đầu và giá kết thúc phải là số dương!");
+                alert.showAndWait();
+                return;
+            }
+
+            // Kiểm tra nếu giá bắt đầu lớn hơn giá kết thúc
+            if (text1 > text2) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Cảnh báo");
+                alert.setHeaderText(null);
+                alert.setContentText("Giá bắt đầu phải nhỏ hơn hoặc bằng giá kết thúc!");
+                alert.showAndWait();
+                return;
+            }
+
+            // Thực hiện tìm kiếm nếu các điều kiện hợp lệ
+            ViolationTicketBUS violationTicketBUS = new ViolationTicketBUS();
+            ArrayList<ViolationTicket> violationTickets = violationTicketBUS.search(text1, text2, "Lọc Theo Giá");
+            ObservableList<ViolationTicket> observableList = FXCollections.observableArrayList(violationTickets);
+            tableviolationticket.setItems(observableList);
+
+        } catch (NumberFormatException e) {
+            // Hiển thị thông báo nếu giá trị không hợp lệ (không phải số)
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cảnh báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng nhập số hợp lệ cho giá bắt đầu và giá kết thúc!");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -3528,7 +3638,7 @@ public class BuildingManagerController implements Initializable {
         boolean isValid = true;  // Biến đánh dấu xem có hợp lệ hay không
 
         // Kiểm tra tên nội thất
-        String nameFurniture = TxtField__P5__3.getText();
+        String nameFurniture = TxtField__P5__3.getText().trim();
         if (nameFurniture.isEmpty()) {
             Regex__P5__2.setText("Không được để trống");
             isValid = false;
@@ -3541,7 +3651,7 @@ public class BuildingManagerController implements Initializable {
         }
 
         // Kiểm tra giá
-        String priceText = TxtField__P5__4.getText();
+        String priceText = TxtField__P5__4.getText().trim();
         if (priceText.isEmpty()) {
             Regex__P5__3.setText("Không được để trống");
             isValid = false;
@@ -3605,7 +3715,7 @@ public class BuildingManagerController implements Initializable {
             }
 
             // Kiểm tra tên nội thất
-            String nameFurniture = TxtField__P5__3.getText();
+            String nameFurniture = TxtField__P5__3.getText().trim();
             if (nameFurniture.isEmpty()) {
                 Regex__P5__2.setText("Không được để trống");
                 isValid = false;
@@ -3618,7 +3728,7 @@ public class BuildingManagerController implements Initializable {
             }
 
             // Kiểm tra giá
-            String priceText = TxtField__P5__4.getText();
+            String priceText = TxtField__P5__4.getText().trim();
             if (priceText.isEmpty()) {
                 Regex__P5__3.setText("Không được để trống");
                 isValid = false;

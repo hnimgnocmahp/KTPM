@@ -101,8 +101,14 @@ public class LoginController {
                         e.printStackTrace();
                     }
                 } else {
-                    lbvalidate_pw.setText("Mật khẩu không đúng");
-                    showError("Invalid username or password.");
+                    if (!customersAccountBUS.doesAccountExist(username) &&
+                            !staffsAccountBUS.doesAccountExist(username)) {
+                        lbvalidate_username.setText("Tài khoản không tồn tại");
+                        lbvalidate_pw.setText("");
+                    } else {
+                        lbvalidate_pw.setText("Mật khẩu không đúng");
+                        showError("Invalid username or password.");
+                    }
                 }
             }
         }

@@ -24,4 +24,13 @@ public class StaffsAccountBUS {
         return "0"; // Đăng nhập không thành công
     }
 
+    public boolean doesAccountExist(String username) {
+        for (StaffsAccount account : listAccount) {
+            if (account.getUsername().equals(username)) {
+                return true; // Tài khoản tồn tại
+            }
+        }
+        return false; // Tài khoản không tồn tại
+    }
+
 }

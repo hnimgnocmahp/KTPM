@@ -8,6 +8,7 @@ import DAO.CustomersAccountDAO;
 import DTO.Apartment;
 import DTO.Cohabitant;
 import DTO.CustomersAccount;
+import DTO.StaffsAccount;
 import javafx.application.Platform;
 
 public class CustomersAccountBUS {
@@ -42,6 +43,15 @@ public class CustomersAccountBUS {
             this.listAccount.remove(customersAccount);
         }
         return check;
+    }
+
+    public boolean doesAccountExist(String username) {
+        for (CustomersAccount account : listAccount) {
+            if (account.getUsername().equals(username)) {
+                return true; // Tài khoản tồn tại
+            }
+        }
+        return false; // Tài khoản không tồn tại
     }
 
 

@@ -381,8 +381,11 @@ public class BossController implements Initializable {
             boolean deleteSuccess = tenantBUS.delete(tenant);
             if (deleteSuccess) {
                 tableUserObservableList.remove(selectedTenant);
+                showAlert("Thông báo", "Xóa khách hàng chưa có hợp đồng thành công", AlertType.INFORMATION);
                 table__P7__1.refresh();
+
             } else {
+                showAlert("Thông báo", "Không thể xóa khách hàng từ cơ sở dữ liệu.", AlertType.INFORMATION);
                 System.err.println("Không thể xóa khách hàng từ cơ sở dữ liệu.");
             }
         }

@@ -178,9 +178,9 @@ public class CohabitantDAO implements DAOInterface<Cohabitant>{
         try {
             Connection connection = JDBCUtil.getConnection();
             String sql = "SELECT * \n" +
-                    "FROM Tenant A \n" +
+                    "FROM Cohabitant C \n" +
+                    "JOIN Tenant A ON A.tenantID = C.tenantID \n" +
                     "JOIN LeaseAgreement B ON A.tenantID = B.tenantID \n" +
-                    "JOIN Cohabitant C ON A.tenantID = C.TenantID \n" +
                     "WHERE (C.cohabitantID LIKE ? OR C.lastName LIKE ? OR C.firstName LIKE ?) \n" +
                     "AND B.buildingManagerID = ?;";
 
